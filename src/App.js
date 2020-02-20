@@ -19,24 +19,24 @@ const useProducts = () => {
 
   const [cart, setCart] = React.useState([]);
   const addToCart = product => {
-    if (cart.find(element => element.product.id === product.id)) {
+    if (!cart.find(element => element.id === product.id)) {
+      setCart([...cart, { ...product, quantity: 1 }]);
+    } else {
       setCart(
         cart.map(item => {
-          if (item.product.id === product.id) {
+          if (item.id === product.id) {
             return { ...item, quantity: item.quantity + 1 };
           } else {
             return item;
           }
         })
       );
-    } else {
-      setCart([...cart, { product, quantity: 1 }]);
     }
   };
   const removeFromCart = product => {
     setCart(
       cart.filter(item => {
-        return item.product.id !== product.id;
+        return item.id !== product.id;
       })
     );
   };
@@ -58,7 +58,7 @@ function App() {
     notes,
     addNote
   ] = useProducts();
-  console.log(cart);
+  // console.log(cart);
   return (
     <BrowserRouter>
       <Header cart={cart} notes={notes} />

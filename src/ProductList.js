@@ -6,7 +6,11 @@ const ProductList = props => {
     <ul>
       {props.products.map(product => (
         <li key={product.id}>
-          <Product product={product} />
+          <Product
+            product={product}
+            removeFromCart={props.removeFromCart}
+            hasRemoveAction={props.hasRemoveAction}
+          />
         </li>
       ))}
     </ul>

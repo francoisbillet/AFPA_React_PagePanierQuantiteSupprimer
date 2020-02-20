@@ -1,19 +1,15 @@
 import React from "react";
+import ProductList from "./ProductList";
 
 const Cart = props => {
   return (
-    <ul>
-      {props.cart.map(item => {
-        return (
-          <p id={item.product.id} key={item.product.id}>
-            {`id: ${item.product.id}, quantité: ${item.quantity}`}
-            <button onClick={e => props.removeFromCart(e.target.parentNode)}>
-              Supprimer
-            </button>
-          </p>
-        );
-      })}
-    </ul>
+    <section className="content">
+      <ProductList
+        products={props.cart}
+        removeFromCart={props.removeFromCart}
+        hasRemoveAction
+      />
+    </section>
   );
 };
 
